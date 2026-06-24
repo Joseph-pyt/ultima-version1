@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I&S Market Mini</title>
+
+     <link rel="stylesheet" href="/static/css/estilos.css">
+</head>
+<body>
+
+    <div class="navbar">
+
+        <div class="navbar-left">
+
+            <div class="navbar-logo">
+                <img src="/static/img/logo.png" alt="Logo">
+            </div>
+
+            <button class="delivery-btn" onclick="alert('Función de delivery próximamente')">
+     Delivery: Ingresar su dirección
+</button>
+
+        </div>
+
+        <div class="navbar-right">
+
+            <input
+    type="text"
+    id="buscador"
+    class="search-box"
+    placeholder="Buscar productos..."
+>
+
+            <a href="#" class="nav-phone">
+                 937 242 308
+            </a>
+            <a href="#" class="nav-cart" id="abrirCarrito">
+     Carrito (<span id="contador-carrito">0</span>)
+</a>
+            <a href="#" class="nav-account" id="abrirLogin">
+                 Mi Cuenta
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="promo">
+        <img src="/static/img/promocion.png" alt="promocion">
+    </div>
+
+   <h1 class="titulo-stock">Nuestros Productos</h1>
+</div>
+
+    <section class="productos">
+
+        <div class="producto producto-item">
+            <img src="/static/img/arroz.png" alt="arroz">
+            <h3>Arroz Costeño</h3>
+            <p>S/ 5.90</p>
+            <button onclick="agregarCarrito('Arroz Costeño', '5.90')">
+    Agregar
+</button>
+        </div>
+
+        <div class="producto producto-item">
+            <img src="/static/img/aceite.png" alt="aceite">
+            <h3>Aceite Primor</h3>
+            <p>S/ 10.50</p>
+            <button onclick="agregarCarrito('Aceite Primor', '10.50')">
+    Agregar
+</button>
+        </div>
+
+        <div class="producto producto-item">
+            <img src="/static/img/leche.png" alt="leche">
+            <h3>Leche Gloria</h3>
+            <p>S/ 4.20</p>
+            <button onclick="agregarCarrito('Leche Gloria', '4.20')">
+    Agregar
+</button>
+        </div>
+        
+         <div class="producto producto-item">
+            <img src="/static/img/torta.png" alt="torta">
+            <h3>Torta Tres Leches 16 Porciones</h3>
+            <p>S/ 62.90</p>
+            <button onclick="agregarCarrito('Torta Tres Leches 16 Porciones', '62.90')">
+    Agregar
+</button>
+        </div>
+
+        <div class="producto producto-item">
+            <img src="/static/img/yogurt.png" alt="yougrt">
+            <h3>Aceite Primor</h3>
+            <p>S/ 9.90</p>
+            <button onclick="agregarCarrito('Yogurt Gloria', '9.90')">
+    Agregar
+</button>
+        </div>
+
+        <div class="producto producto-item">
+            <img src="/static/img/atun.png" alt="atun">
+            <h3>Filete de Atún Primor</h3>
+            <p>S/ 5.90</p>
+            <button onclick="agregarCarrito('Filete de Atún Primor', '5.90')">
+    Agregar
+</button>
+
+        </div>
+
+        <div class="producto producto-item">
+            <img src="/static/img/durazno.png" alt="durazno">
+            <h3>Durazno en Mitades</h3>
+            <p>S/ 8.00</p>
+            <button onclick="agregarCarrito('Durazno en Mitades', '8.00')">
+    Agregar
+</button>
+        </div>
+
+        <div class="producto producto-item">
+            <img src="/static/img/gaseosa.png" alt="gaseosa">
+            <h3>Gaseosa COCA COLA  + INCA KOLA </h3>
+            <p>S/ 22.90</p>
+            <button onclick="agregarCarrito('Gaseosa COCA COLA + INCA KOLA', '22.90')">
+    Agregar
+</button>
+        </div>
+
+    </section>
+    <footer class="footer">
+
+    <div class="footer-contenido">
+
+        <div class="footer-seccion">
+            <h3>I&S Market Mini</h3>
+            <p>Tu tienda de confianza para productos de calidad.</p>
+        </div>
+
+        <div class="footer-seccion">
+            <h3>Contacto</h3>
+            <p> 937 242 308</p>
+            <p> I&SMarketMini@gmail.com</p>
+        </div>
+
+        <div class="footer-seccion">
+            <h3>Horario</h3>
+            <p>Lunes - Domingo</p>
+            <p>8:00 AM - 10:00 PM</p>
+        </div>
+
+    </div>
+
+    <div class="footer-copy">
+        © 2026 I&S Market Mini | Todos los derechos reservados
+    </div>
+
+</footer>
+
+    <div class="overlay" id="loginModal">
+
+        <div class="modal">
+            
+            
+            <button class="modal-close" id="cerrarLogin">
+                ×
+            </button>
+
+            <div class="modal-logo">
+                <img src="/static/img/logo.png" alt="Logo">
+            </div>
+
+           <div id="loginForm">
+
+    <h2>Iniciar Sesión</h2>
+
+    <p>Ingresa tus credenciales</p>
+
+    <form method="POST" action="/login">
+
+        <div class="input-group">
+            <label>Usuario</label>
+            <input type="text" name="usuario" required>
+        </div>
+
+        <div class="input-group">
+            <label>Contraseña</label>
+            <input type="password" name="password" required>
+        </div>
+
+        <button type="submit" class="btn-login">
+            Ingresar
+        </button>
+
+    </form>
+
+    <p class="cambiar-formulario">
+        ¿No tienes cuenta?
+        <a href="#" onclick="mostrarRegistro(); return false;">
+            Crear cuenta
+        </a>
+    </p>
+
+</div>
+<div id="registro" style="display:none;">
+
+    <h2>Crear Cuenta</h2>
+
+    <form action="/registro" method="POST">
+
+        <div class="input-group">
+            <label>Correo Electrónico</label>
+            <input
+                type="email"
+                name="correo"
+                required>
+        </div>
+
+        <div class="input-group">
+            <label>Contraseña</label>
+            <input
+                type="password"
+                name="password"
+                required>
+        </div>
+
+        <button type="submit" class="btn-login">
+            Registrarse
+        </button>
+        <p class="cambiar-formulario">
+    ¿Ya tienes cuenta?
+    <a href="#" onclick="mostrarLogin(); return false;">
+        Iniciar Sesión
+    </a>
+</p>
+
+    </form>
+
+</div>
+
+        </div>
+
+    </div>
+    <div class="overlay" id="carritoModal">
+
+    <div class="modal">
+
+        <button class="modal-close" id="cerrarCarrito">
+            ×
+        </button>
+
+        <h2>Mi Carrito</h2>
+
+        <div id="listaCarrito">
+
+            <p>No hay productos agregados.</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <script>
+
+        const abrir = document.getElementById("abrirLogin");
+        const cerrar = document.getElementById("cerrarLogin");
+        const modal = document.getElementById("loginModal");
+
+        abrir.onclick = function(e){
+            e.preventDefault();
+            modal.classList.add("active");
+        }
+
+        cerrar.onclick = function(){
+            modal.classList.remove("active");
+        }
+
+        window.onclick = function(e){
+            if(e.target === modal){
+                modal.classList.remove("active");
+            }
+        }
+
+    </script>
+    <script>
+
+let carrito = [];
+
+function agregarCarrito(nombre, precio){
+
+    carrito.push({
+        nombre: nombre,
+        precio: precio
+    });
+
+    document.getElementById("contador-carrito").textContent =
+        carrito.length;
+
+    actualizarCarrito();
+}
+
+function actualizarCarrito(){
+
+    let lista =
+        document.getElementById("listaCarrito");
+
+    lista.innerHTML = "";
+
+    let total = 0;
+
+    carrito.forEach((producto, indice) => {
+
+    total += parseFloat(producto.precio);
+
+    lista.innerHTML += `
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:10px;
+        ">
+            <span>
+                ${producto.nombre}
+                - S/ ${producto.precio}
+            </span>
+
+            <button
+                onclick="eliminarProducto(${indice})"
+                style="
+                    background:red;
+                    color:white;
+                    border:none;
+                    padding:5px 10px;
+                    border-radius:5px;
+                    cursor:pointer;
+                ">
+                Eliminar
+            </button>
+        </div>
+    `;
+});
+
+    lista.innerHTML += `
+        <hr>
+        <h3>Total: S/ ${total.toFixed(2)}</h3>
+    `;
+}
+function eliminarProducto(indice){
+
+    carrito.splice(indice, 1);
+
+    document.getElementById("contador-carrito").textContent =
+        carrito.length;
+
+    actualizarCarrito();
+}
+const abrirCarrito =
+    document.getElementById("abrirCarrito");
+
+const cerrarCarrito =
+    document.getElementById("cerrarCarrito");
+
+const carritoModal =
+    document.getElementById("carritoModal");
+
+abrirCarrito.onclick = function(e){
+
+    e.preventDefault();
+
+    carritoModal.classList.add("active");
+}
+
+cerrarCarrito.onclick = function(){
+
+    carritoModal.classList.remove("active");
+}
+
+</script>
+
+    <script>
+function mostrarRegistro(){
+
+    document.getElementById("loginForm").style.display = "none";
+
+    document.getElementById("registro").style.display = "block";
+}
+function mostrarLogin(){
+
+    document.getElementById("registro").style.display = "none";
+
+    document.getElementById("loginForm").style.display = "block";
+}
+</script>
+<script>
+
+const buscador =
+    document.getElementById("buscador");
+
+buscador.addEventListener("keyup", function(){
+
+    let texto =
+        buscador.value.toLowerCase();
+
+    let productos =
+        document.querySelectorAll(".producto-item");
+
+    productos.forEach(producto => {
+
+        let nombre =
+            producto.querySelector("h3")
+                    .textContent
+                    .toLowerCase();
+
+        if(nombre.includes(texto)){
+            producto.style.display = "block";
+        }
+        else{
+            producto.style.display = "none";
+        }
+
+    });
+
+});
+
+</script>
+<script>
+document.querySelector('.delivery-btn').onclick = function(){
+    var dir = prompt('Ingresa tu dirección de delivery:');
+    if(dir){
+        this.textContent = ' Dirección guardada ';
+    }
+}
+</script>
+
+</body>
+</html>
