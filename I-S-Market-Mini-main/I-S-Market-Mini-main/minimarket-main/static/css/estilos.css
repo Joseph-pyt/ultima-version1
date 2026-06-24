@@ -642,3 +642,12 @@ body{
 .nav-cart:hover{
     background-color: #f0f0f0;
 }
+.libro-link{
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.libro-link:hover{
+    text-decoration: underline;
+}
